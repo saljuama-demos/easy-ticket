@@ -14,5 +14,5 @@ This demo includes different modules with different technologies:
   - Gradle
 
 * React single page application
-  - Node.js 14+
+  - Node.js 16+
   - NPM or Yarn
