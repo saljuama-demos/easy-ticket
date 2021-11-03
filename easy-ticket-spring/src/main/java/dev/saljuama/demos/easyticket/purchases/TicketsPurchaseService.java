@@ -16,9 +16,21 @@ public class TicketsPurchaseService {
     private final AvailableSeatsService availableSeatsService;
 
     public List<TicketInformation> buyTickets(Long showId, int amount) {
+        /*
+        This is the simplest and easiest way to toggle functionality,
+        this can be used while in development, and only enable it once it
+        is ready to be shipped.
+
+        Although, this approach has some problems, can you try to guess which ones?
+         */
+        var useNewSeatFindingAlgorithm = false;
+
         var showInformation = showService.getInfoForShow(showId);
-        return availableSeatsService
-                .getRandomAvailableSeats(amount)
+        var availableSeats = useNewSeatFindingAlgorithm
+                ? availableSeatsService.newFancySeatFinderApproach(amount)
+                : availableSeatsService.getRandomAvailableSeats(amount);
+
+        return availableSeats
                 .stream()
                 .map(seat -> new TicketInformation(showInformation.getRoom(), seat, showInformation.getStartTime()))
                 .collect(Collectors.toList());

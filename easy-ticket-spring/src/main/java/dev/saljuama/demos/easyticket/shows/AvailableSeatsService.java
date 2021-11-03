@@ -17,4 +17,12 @@ public class AvailableSeatsService {
                 .map(random -> Math.abs(random) % 300)
                 .collect(Collectors.toList());
     }
+
+    // We do not care about algorithm correctness, we just want to
+    // illustrate the use case of changing a business logic rule
+    public List<Integer> newFancySeatFinderApproach(int amount) {
+        return IntStream.rangeClosed(1, amount)
+                .boxed()
+                .collect(Collectors.toList());
+    }
 }

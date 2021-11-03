@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 public class ShowService {
 
     public ShowInformation getInfoForShow(Long id){
-        return new ShowInformation(
-                1,
-                LocalDateTime.now().plusHours(1)
-        );
+        // For demo purposes this dummy information is enough
+        return new ShowInformation(1, LocalDateTime.now().plusHours(1));
     }
 }
