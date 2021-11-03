@@ -2,6 +2,7 @@ package dev.saljuama.demos.easyticket.shows;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -18,11 +19,8 @@ public class AvailableSeatsService {
                 .collect(Collectors.toList());
     }
 
-    // We do not care about algorithm correctness, we just want to
-    // illustrate the use case of changing a business logic rule
     public List<Integer> newFancySeatFinderApproach(int amount) {
-        return IntStream.rangeClosed(1, amount)
-                .boxed()
-                .collect(Collectors.toList());
+        // This is a work in progress...
+        return Collections.emptyList();
     }
 }

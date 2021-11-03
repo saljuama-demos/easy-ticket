@@ -23,13 +23,13 @@ public class TicketsPurchaseService {
 
         Although, this approach has some problems, can you try to guess which ones?
          */
-        var useNewSeatFindingAlgorithm = false;
 
-        var showInformation = showService.getInfoForShow(showId);
+        var useNewSeatFindingAlgorithm = false; // set to true to enable the new algorithm
         var availableSeats = useNewSeatFindingAlgorithm
                 ? availableSeatsService.newFancySeatFinderApproach(amount)
                 : availableSeatsService.getRandomAvailableSeats(amount);
 
+        var showInformation = showService.getInfoForShow(showId);
         return availableSeats
                 .stream()
                 .map(seat -> new TicketInformation(showInformation.getRoom(), seat, showInformation.getStartTime()))
