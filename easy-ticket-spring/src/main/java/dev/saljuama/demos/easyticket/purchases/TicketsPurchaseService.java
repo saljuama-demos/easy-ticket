@@ -15,7 +15,7 @@ public class TicketsPurchaseService {
 
     private final ShowService showService;
     private final AvailableSeatsService availableSeatsService;
-    private FeatureToggles featureToggles;
+    private final FeatureToggles featureToggles;
 
     public List<TicketInformation> buyTickets(Long showId, int amount) {
 
