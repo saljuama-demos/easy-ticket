@@ -2,6 +2,8 @@ package dev.saljuama.demos.easyticket.purchases;
 
 import dev.saljuama.demos.easyticket.FeatureToggles;
 import dev.saljuama.demos.easyticket.shows.AvailableSeatsService;
+import dev.saljuama.demos.easyticket.shows.NoSeatsAvailableException;
+import dev.saljuama.demos.easyticket.shows.ShowDoesNotExistException;
 import dev.saljuama.demos.easyticket.shows.ShowService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,9 +28,17 @@ public class TicketsPurchaseService {
                     .stream()
                     .map(seat -> new TicketInformation(showInformation.getRoom(), seat, showInformation.getStartTime()))
                     .collect(Collectors.toList());
-        }catch (RuntimeException e){
-            return new ArrayList<>(); //esto es una lista vacía, estamos haciendo referencia a list<TicketInformation>, no se ha ejecutado dentro del try
+
+        } catch (ShowDoesNotExistException e) {
+            throw new RuntimeException("what show you asking for? huh?");
+
+        } catch (NoSeatsAvailableException e){
+            throw new RuntimeException("yo, no seats available");
+
+        } catch (Exception e) {
+            throw new RuntimeException("unknown error");
         }
+
     }
 
 }

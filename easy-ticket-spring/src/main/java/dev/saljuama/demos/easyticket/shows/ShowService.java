@@ -9,6 +9,10 @@ public class ShowService {
 
     public ShowInformation getInfoForShow(Long id){
         // For demo purposes this dummy information is enough
-        return new ShowInformation(1, LocalDateTime.now().plusHours(1));
+        if(id == 1)
+            return new ShowInformation(1, LocalDateTime.now().plusHours(1));
+        else
+            throw new ShowDoesNotExistException();
     }
 }
+

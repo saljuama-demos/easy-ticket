@@ -17,6 +17,8 @@ public class AvailableSeatsService {
     private final FeatureToggles featureToggles;
 
     public List<Integer> getAvailableSeats(int amount){
+        if (amount < 1)
+            throw new NoSeatsAvailableException();
         return featureToggles.isNewSeatFinderEnabled()
                 ? newFancySeatFinderApproach(amount)
                 : getRandomAvailableSeats(amount);
